@@ -142,9 +142,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccauntData.cs" />
+    <Compile Include="Circle.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Figure.cs" />
+    <Compile Include="GroupData.cs" />
+    <Compile Include="Square.cs" />
+    <Compile Include="Square_1.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
+    <Compile Include="UnitTest_1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
