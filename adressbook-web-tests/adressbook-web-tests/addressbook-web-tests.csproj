@@ -149,9 +149,11 @@
     <Compile Include="GroupData.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Square_1.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
+    <Compile Include="RemoveGroup.cs" />
     <Compile Include="UserCreation.cs" />
     <Compile Include="UnitTest_1.cs" />
     <Compile Include="UserData.cs" />
