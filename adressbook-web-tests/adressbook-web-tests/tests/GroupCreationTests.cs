@@ -15,12 +15,7 @@ namespace WebAddressbookTests
             group.Header = "group1";
             group.Footer = "group1";
 
-            app.Navigator.GoToGroupsPage();
-            app.Groups
-                .InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+            app.Groups.Create(group);
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -29,12 +24,8 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            app.Navigator.GoToGroupsPage();
-            app.Groups
-                .InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+   //         app.Navigator.GoToGroupsPage();
+            app.Groups.Create(group);
         }
     }
 }

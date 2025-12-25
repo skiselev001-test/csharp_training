@@ -14,7 +14,6 @@ namespace WebAddressbookTests
         [Test]
         public void UserCreationTest()
         {
-            app.Navigator.GoToUserPage();
             UserData userData = new UserData("User1", "User1");
             userData.Bday = "17";
             userData.Bmonth = "January";
@@ -22,9 +21,7 @@ namespace WebAddressbookTests
             userData.Aday = "27";
             userData.Amonth = "January";
             userData.Ayear = "2010";
-            app.Contacts
-                .FillUserForm(userData)
-                .SubmitUserCreation();
+            app.Contacts.Create(userData);
             app.Navigator.GoToHomePage();
         }
 

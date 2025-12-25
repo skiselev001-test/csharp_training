@@ -10,7 +10,7 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(IWebDriver driver) : base(driver) 
+        public ContactHelper(ApplicationManager manager) : base(manager) 
         {
         }
 
@@ -83,6 +83,14 @@ namespace WebAddressbookTests
         public ContactHelper SubmitUserCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[19]")).Click();
+            return this;
+        }
+
+        public ContactHelper Create(UserData userData)
+        {
+            manager.Navigator.GoToUserPage();
+            FillUserForm(userData);
+            SubmitUserCreation();
             return this;
         }
     }
