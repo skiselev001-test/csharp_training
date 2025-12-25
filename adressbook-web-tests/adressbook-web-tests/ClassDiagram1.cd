@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WebAddressbookTests.ContactHelper" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAgAQAAAAAAAABIAAAECAAEAAACAAAAAAAAA=</HashCode>
+      <FileName>appmanager\ContactHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.HelperBase" Collapsed="true">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>appmanager\HelperBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.LoginHelper" Collapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>appmanager\LoginHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.GroupRemoveTests" Collapsed="true">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupRemoveTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.TestBase">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>tests\TestBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.GroupModificationTests" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupModificationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.UserCreationTests" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>tests\UserCreationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.UserRemoveTests" Collapsed="true">
+    <Position X="0.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\UserRemoveTests.cs</FileName>
+      <NewMemberFileName>tests\UserEditionTests.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.NavigationHelper" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAKA=</HashCode>
+      <FileName>appmanager\NavigationHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.GroupHelper" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAEABAAAAEABMEAAAAAAAABAAAA=</HashCode>
+      <FileName>appmanager\GroupHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.UserModificationTests" Collapsed="true">
+    <Position X="0.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\UserModificationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.GroupCreationTests" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupCreationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.ApplicationManager">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAEAEAABAAAAAAAAAAAAASAAAAAgAAAIBCAABAAACA=</HashCode>
+      <FileName>appmanager\ApplicationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
