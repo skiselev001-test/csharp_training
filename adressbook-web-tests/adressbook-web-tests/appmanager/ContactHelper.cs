@@ -14,6 +14,13 @@ namespace WebAddressbookTests
         {
         }
 
+        public ContactHelper Create(UserData userData)
+        {
+            manager.Navigator.GoToUserPage();
+            FillUserForm(userData);
+            SubmitUserCreation();
+            return this;
+        }
         public ContactHelper FillUserForm(UserData user)
         {
             driver.FindElement(By.Name("firstname")).Click();
@@ -83,14 +90,6 @@ namespace WebAddressbookTests
         public ContactHelper SubmitUserCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[19]")).Click();
-            return this;
-        }
-
-        public ContactHelper Create(UserData userData)
-        {
-            manager.Navigator.GoToUserPage();
-            FillUserForm(userData);
-            SubmitUserCreation();
             return this;
         }
     }
