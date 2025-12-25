@@ -142,21 +142,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccauntData.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="Figure.cs" />
-    <Compile Include="GroupData.cs" />
-    <Compile Include="Square.cs" />
-    <Compile Include="Square_1.cs" />
-    <Compile Include="TestBase.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="model\AccauntData.cs" />
+    <Compile Include="appmanager\ApplicationManager.cs" />
+    <Compile Include="temp\Circle.cs" />
+    <Compile Include="temp\Class1.cs" />
+    <Compile Include="appmanager\ContactHelper.cs" />
+    <Compile Include="temp\Figure.cs" />
+    <Compile Include="model\GroupData.cs" />
+    <Compile Include="appmanager\HelperBase.cs" />
+    <Compile Include="appmanager\LoginHelper.cs" />
+    <Compile Include="appmanager\NavigationHelper.cs" />
+    <Compile Include="appmanager\GroupHelper.cs" />
+    <Compile Include="temp\Square.cs" />
+    <Compile Include="temp\Square_1.cs" />
+    <Compile Include="tests\TestBase.cs" />
+    <Compile Include="temp\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GroupCreationTests.cs" />
-    <Compile Include="RemoveGroup.cs" />
-    <Compile Include="UserCreation.cs" />
-    <Compile Include="UnitTest_1.cs" />
-    <Compile Include="UserData.cs" />
+    <Compile Include="tests\GroupCreationTests.cs" />
+    <Compile Include="tests\GroupRemoveTests.cs" />
+    <Compile Include="tests\UserCreationTests.cs" />
+    <Compile Include="temp\UnitTest_1.cs" />
+    <Compile Include="model\UserData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

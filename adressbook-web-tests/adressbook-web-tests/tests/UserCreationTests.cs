@@ -9,14 +9,12 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UserCreationtests : TestBase
+    public class UserCreationTests : TestBase
     {
         [Test]
         public void UserCreationTest()
         {
-            OpenHomePage();
-            Login(new AccauntData("admin", "secret"));
-            GoToUserPage();
+            app.Navigator.GoToUserPage();
             UserData userData = new UserData("User1", "User1");
             userData.Bday = "17";
             userData.Bmonth = "January";
@@ -24,10 +22,10 @@ namespace WebAddressbookTests
             userData.Aday = "27";
             userData.Amonth = "January";
             userData.Ayear = "2010";
-            FillGroupForm(userData);
-            SubmitUserCreation();
-            GoToHomePage();
-            Logout();
+            app.Contacts
+                .FillUserForm(userData)
+                .SubmitUserCreation();
+            app.Navigator.GoToHomePage();
         }
 
         
