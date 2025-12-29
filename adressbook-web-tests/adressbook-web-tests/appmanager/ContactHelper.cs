@@ -39,15 +39,12 @@ namespace WebAddressbookTests
 
         public ContactHelper FillUserForm(UserData user)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(user.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(user.Middlename);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(user.Lastname);
+            Type(By.Name("firstname"), user.Firstname);
+            Type(By.Name("middlename"), user.Middlename);
+            Type(By.Name("lastname"), user.Lastname);
+
+         /*  locators to work in future
+          
             driver.FindElement(By.Name("nickname")).Click();
             driver.FindElement(By.Name("nickname")).Clear();
             driver.FindElement(By.Name("nickname")).SendKeys(user.Nickname);
@@ -99,7 +96,8 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//div[@id='content']/form/select[4]/option[2]")).Click();
             driver.FindElement(By.Name("ayear")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
-            driver.FindElement(By.Name("ayear")).SendKeys(user.Ayear);
+            driver.FindElement(By.Name("ayear")).SendKeys(user.Ayear); */
+
             return this;
         }
 
@@ -130,7 +128,7 @@ namespace WebAddressbookTests
 
         private ContactHelper SelectUserToRemove(string userIndex)
         {
-            driver.FindElement(By.Id(userIndex)).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + userIndex + "]/td/input")).Click(); 
             return this;
         }
     }
