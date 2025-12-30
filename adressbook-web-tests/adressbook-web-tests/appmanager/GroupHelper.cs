@@ -33,6 +33,16 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public GroupHelper CheckGroupList()
+        {
+            manager.Navigator.GoToGroupsPage();
+            if (!IsElementPresent(By.XPath("//div[@id='content']/form/span[1]/input")))
+            {
+                manager.Groups.Create(new GroupData("Group_N"));
+            }
+            return this;
+        }
+
         internal GroupHelper Modify(GroupData group, string groupIndex)
         {
             manager.Navigator.GoToGroupsPage();

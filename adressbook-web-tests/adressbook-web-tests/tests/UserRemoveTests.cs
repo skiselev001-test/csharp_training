@@ -15,6 +15,7 @@ namespace WebAddressbookTests
         [Test]
         public void UserRemoveTest()
         {
+            app.Contacts.CheckUsersList();
             app.Contacts.Remove("2");
             app.Navigator.GoToHomePage();
         }

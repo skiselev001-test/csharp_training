@@ -101,6 +101,17 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper CheckUsersList()
+        {
+            manager.Navigator.OpenHomePage();
+            if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr/td/a/img[@title='Edit']")))
+            {
+                manager.Contacts.Create(new UserData("User_N","User_N"));
+                manager.Navigator.GoToHomePage();
+            }
+            return this;
+        }
+
         public ContactHelper SubmitUserCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[19]")).Click();

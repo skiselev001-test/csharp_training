@@ -22,6 +22,7 @@ namespace WebAddressbookTests
             userData.Aday = "27";
             userData.Amonth = "January";
             userData.Ayear = "2010";
+            app.Contacts.CheckUsersList();
             app.Contacts.Modify(userData,"2");
             app.Navigator.GoToHomePage();
         }
