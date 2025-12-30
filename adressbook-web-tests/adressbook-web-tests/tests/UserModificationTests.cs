@@ -10,7 +10,7 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UserModificationTests : TestBase
+    public class UserModificationTests : AuthTestBase
     {
         [Test]
         public void UserModificationTest()

@@ -18,9 +18,7 @@ namespace WebAddressbookTests
         public void InitiApplicationManager()
         {
 
-            ApplicationManager app = ApplicationManager.GetIstatnce();
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccauntData("admin", "secret"));
+            ApplicationManager app = ApplicationManager.GetInstance();
         }
 
         [OneTimeTearDown]
@@ -28,7 +26,7 @@ namespace WebAddressbookTests
         {
             try
             {
-                ApplicationManager.GetIstatnce().Driver.Quit();
+                ApplicationManager.GetInstance().Driver.Quit();
  //               driver.Quit();
             }
             catch (Exception)
