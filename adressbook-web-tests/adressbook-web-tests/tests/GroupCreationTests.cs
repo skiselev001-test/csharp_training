@@ -3,6 +3,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
+
 namespace WebAddressbookTests
 {
     [TestFixture]
@@ -15,7 +17,12 @@ namespace WebAddressbookTests
             group.Header = "group1";
             group.Footer = "group1";
 
+            List<GroupData> oldGroups = app.Groups.GetGropList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGropList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -24,8 +31,26 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-   //         app.Navigator.GoToGroupsPage();
+            List<GroupData> oldGroups = app.Groups.GetGropList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGropList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+        }
+        [Test]
+        public void BadGroupCreationTest()
+        {
+            GroupData group = new GroupData("a'a");
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGropList();
+
+            app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGropList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
     }
 }
