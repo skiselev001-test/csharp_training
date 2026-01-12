@@ -16,7 +16,7 @@ namespace WebAddressbookTests
             group.Footer = "newgroup1";
 
             app.Groups.CheckGroupList();
-            app.Groups.Modify(group, "1");
+            app.Groups.Modify(group, 0);
         }
     }
 }

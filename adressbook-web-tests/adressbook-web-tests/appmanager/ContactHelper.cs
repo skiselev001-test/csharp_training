@@ -142,5 +142,17 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + userIndex + "]/td/input")).Click(); 
             return this;
         }
+
+ /*       public List<UserData> GetUserList()
+        {
+            List<UserData> users = new List<UserData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                users.Add(new UserData(element.Text));
+            }
+            return users;
+        } */
     }
 }

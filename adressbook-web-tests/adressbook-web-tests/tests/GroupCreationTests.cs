@@ -39,7 +39,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
         [Test]
-        public void BadGroupCreationTest()
+        public void BadNameGroupCreationTest()
         {
             GroupData group = new GroupData("a'a");
             group.Header = "";

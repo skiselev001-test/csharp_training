@@ -25,7 +25,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(string groupNumber)
+        public GroupHelper Remove(int groupNumber)
         {
             manager.Navigator.GoToGroupsPage();
             RemoveGroup(groupNumber);
@@ -43,7 +43,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        internal GroupHelper Modify(GroupData group, string groupIndex)
+        internal GroupHelper Modify(GroupData group, int groupIndex)
         {
             manager.Navigator.GoToGroupsPage();
             InitGroupModify(groupIndex);
@@ -59,9 +59,9 @@ namespace WebAddressbookTests
             return this; ;
         }
 
-        private GroupHelper InitGroupModify(string groupIndex)
+        private GroupHelper InitGroupModify(int groupIndex)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + groupIndex + "]/input")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (groupIndex +1) + "]/input")).Click();
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
@@ -86,9 +86,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper RemoveGroup(string indexGroup = "1")
+        public GroupHelper RemoveGroup(int indexGroup = 0)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + indexGroup + "]/input")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (indexGroup + 1) + "]/input")).Click();
             driver.FindElement(By.Name("delete")).Click();
             return this;
         }
