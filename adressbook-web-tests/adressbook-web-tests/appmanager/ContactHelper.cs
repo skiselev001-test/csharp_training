@@ -143,16 +143,19 @@ namespace WebAddressbookTests
             return this;
         }
 
- /*       public List<UserData> GetUserList()
+        public List<UserData> GetUserList()
         {
             List<UserData> users = new List<UserData>();
-            manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+//            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=\"entry\"]"));
             foreach (IWebElement element in elements)
             {
-                users.Add(new UserData(element.Text));
+                IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
+                IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
+                users.Add(new UserData(firstname.Text, lastname.Text));
             }
             return users;
-        } */
+        } 
     }
 }
+//ICollection<IWebElement> elementsFirstname = driver.FindElements(By.CssSelector("[name=\"entry\"]>td:nth-child(3)"));

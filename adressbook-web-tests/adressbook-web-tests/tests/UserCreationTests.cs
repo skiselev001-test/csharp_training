@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -15,6 +16,7 @@ namespace WebAddressbookTests
         public void UserCreationTest()
         {
             UserData userData = new UserData("User1", "User1");
+            userData.Lastname = "User1_lastName";
             userData.Bday = "17";
             userData.Bmonth = "January";
             userData.Byear = "2010";
@@ -23,6 +25,11 @@ namespace WebAddressbookTests
             userData.Ayear = "2010";
             app.Contacts.Create(userData);
             app.Navigator.GoToHomePage();
+            List<UserData> oldUsers = app.Contacts.GetUserList();
+            foreach (UserData user in oldUsers)
+            {
+                Console.WriteLine($"{user.Firstname} {user.Middlename}");
+            }
         }
 
         
