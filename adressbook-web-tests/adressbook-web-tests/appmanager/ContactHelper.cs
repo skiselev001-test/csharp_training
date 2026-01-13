@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(UserData userData, string userIndex)
+        public ContactHelper Modify(UserData userData, int userIndex)
         {
             SelectUserToModify(userIndex);
             FillUserForm(userData);
@@ -124,9 +125,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper SelectUserToModify(string userIndex)
+        private ContactHelper SelectUserToModify(int userIndex)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + userIndex + "]/td[8]/a/img")).Click();
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child("+(userIndex+2)+") td:nth-child(1)")).Click();     //By.XPath("//table[@id='maintable']/tbody/tr[" + userIndex + "]/td[8]/a/img")).Click();
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child("+(userIndex+2)+") td:nth-child(8) ")).Click();
             driver.FindElement(By.XPath("//form[@action='edit.php']")).Click();
             return this;
         }

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,7 +16,7 @@ namespace WebAddressbookTests
         [Test]
         public void UserModificationTest()
         {
-            UserData userData = new UserData("User_1", "User_1");
+            UserData userData = new UserData("User_1", "User_lastname_01");
             userData.Bday = "17";
             userData.Bmonth = "January";
             userData.Byear = "2010";
@@ -23,8 +24,19 @@ namespace WebAddressbookTests
             userData.Amonth = "January";
             userData.Ayear = "2010";
             app.Contacts.CheckUsersList();
-            app.Contacts.Modify(userData,"2");
+
+            List<UserData> oldUsers = app.Contacts.GetUserList();
+
+            app.Contacts.Modify(userData,0);
             app.Navigator.GoToHomePage();
+
+            List<UserData> newUsers = app.Contacts.GetUserList();
+
+            oldUsers[0].Firstname = userData.Firstname;
+            oldUsers[0].Lastname = userData.Lastname;
+            oldUsers.Sort();
+            newUsers.Sort();
+            Assert.AreEqual(oldUsers, newUsers);
         }
     }
 }

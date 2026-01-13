@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    public class UserData
+    public class UserData : IEquatable<UserData>,IComparable<UserData>
     {
         private string firstname ="";
         private string middlename ="";
