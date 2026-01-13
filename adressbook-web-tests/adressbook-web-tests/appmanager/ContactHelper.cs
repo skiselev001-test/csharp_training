@@ -146,7 +146,7 @@ namespace WebAddressbookTests
         public List<UserData> GetUserList()
         {
             List<UserData> users = new List<UserData>();
-//            manager.Navigator.GoToHomePage();
+            manager.Navigator.OpenHomePage();
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=\"entry\"]"));
             foreach (IWebElement element in elements)
             {

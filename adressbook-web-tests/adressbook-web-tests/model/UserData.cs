@@ -9,8 +9,8 @@ namespace WebAddressbookTests
 {
     public class UserData
     {
-        private string firstname;
-        private string middlename;
+        private string firstname ="";
+        private string middlename ="";
         private string lastname ="";
         private string nickname ="";
         private string title = "";
@@ -33,10 +33,10 @@ namespace WebAddressbookTests
         private string ayear = "";
 
 
-        public UserData(string firstname, string middlename) 
+        public UserData(string firstname, string lastname) 
         { 
             this.firstname = firstname;
-            this.middlename = middlename;
+            this.lastname = lastname;
         }
 
         public bool Equals(UserData other)
@@ -45,13 +45,28 @@ namespace WebAddressbookTests
             { return false; }
             if (Object.ReferenceEquals(other, this))
             { return true; }
-            return (firstname == other.firstname && middlename == other.middlename);
+            return (Firstname == other.Firstname) && (Lastname== other.Lastname);
         }
 
-        public int GetHashCode()
+        public override int GetHashCode()
         {
-            return 0 ;
+            return Firstname.GetHashCode() + Lastname.GetHashCode(); 
         }
+
+        public override string ToString()
+        {
+            return $"Firstname: {Firstname}, Lastname: {Lastname}";
+        }
+
+        public int CompareTo(UserData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return Firstname.CompareTo(other.Firstname) + Lastname.CompareTo(other.Lastname);
+        }
+
         public string Firstname { get { return firstname; } set { firstname = value; } }
         public string Middlename { get { return middlename; } set { middlename = value; } }
         public string Lastname { get { return lastname; } set { lastname = value; } }
