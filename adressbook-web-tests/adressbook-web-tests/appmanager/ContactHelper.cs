@@ -31,7 +31,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Remove(string userIndex)
+        public ContactHelper Remove(int userIndex)
         {
             SelectUserToRemove(userIndex);
             SubmitUserRemove();
@@ -142,9 +142,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper SelectUserToRemove(string userIndex)
+        private ContactHelper SelectUserToRemove(int userIndex)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + userIndex + "]/td/input")).Click(); 
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (userIndex+2) + "]/td/input")).Click(); 
             return this;
         }
 

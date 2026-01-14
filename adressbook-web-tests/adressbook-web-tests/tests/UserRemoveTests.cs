@@ -20,7 +20,7 @@ namespace WebAddressbookTests
 
             List<UserData> oldUsers = app.Contacts.GetUserList();
 
-            app.Contacts.Remove("2");
+            app.Contacts.Remove(0);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count - 1, app.Contacts.GetUserCount());
