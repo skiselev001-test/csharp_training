@@ -116,12 +116,14 @@ namespace WebAddressbookTests
         public ContactHelper SubmitUserCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[19]")).Click();
+            userCache = null;
             return this;
         }
 
         public ContactHelper SubmitUserModify()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[20]")).Click();
+            userCache = null;
             return this;
         }
 
@@ -136,6 +138,7 @@ namespace WebAddressbookTests
         private ContactHelper SubmitUserRemove()
         {
             driver.FindElement(By.Name("delete")).Click();
+            userCache = null;
             return this;
         }
 
@@ -145,19 +148,29 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private List<UserData> userCache = null;
+
         public List<UserData> GetUserList()
         {
-            List<UserData> users = new List<UserData>();
-            manager.Navigator.OpenHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=\"entry\"]"));
-            foreach (IWebElement element in elements)
+            if (userCache == null)
             {
-                IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
-                IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
-                users.Add(new UserData(firstname.Text, lastname.Text));
+                userCache = new List<UserData>();
+                manager.Navigator.OpenHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=\"entry\"]"));
+                foreach (IWebElement element in elements)
+                {
+                    IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
+                    IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
+                    userCache.Add(new UserData(firstname.Text, lastname.Text));
+                }
             }
-            return users;
-        } 
+                return new List<UserData>(userCache);
+        }
+
+        public int GetUserCount()
+        {
+            return driver.FindElements(By.CssSelector("table#maintable tbody tr")).Count-1;
+        }
     }
 }
 //ICollection<IWebElement> elementsFirstname = driver.FindElements(By.CssSelector("[name=\"entry\"]>td:nth-child(3)"));

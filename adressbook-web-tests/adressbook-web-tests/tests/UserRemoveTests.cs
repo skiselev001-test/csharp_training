@@ -23,6 +23,8 @@ namespace WebAddressbookTests
             app.Contacts.Remove("2");
             app.Navigator.GoToHomePage();
 
+            Assert.AreEqual(oldUsers.Count - 1, app.Contacts.GetUserCount());
+
             List<UserData> newUsers = app.Contacts.GetUserList();
             oldUsers.RemoveAt(0);
             oldUsers.Sort();

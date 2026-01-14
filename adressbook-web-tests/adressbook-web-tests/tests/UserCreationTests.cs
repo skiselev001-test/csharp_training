@@ -30,6 +30,8 @@ namespace WebAddressbookTests
             app.Contacts.Create(userData);
             app.Navigator.GoToHomePage();
 
+            Assert.AreEqual(oldUsers.Count + 1, app.Contacts.GetUserCount());
+
             List<UserData> newUsers = app.Contacts.GetUserList();
             oldUsers.Add(userData);
             oldUsers.Sort();
