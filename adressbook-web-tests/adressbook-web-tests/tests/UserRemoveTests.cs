@@ -20,6 +20,8 @@ namespace WebAddressbookTests
 
             List<UserData> oldUsers = app.Contacts.GetUserList();
 
+            UserData toBeRemoved = oldUsers[0];
+
             app.Contacts.Remove(0);
             app.Navigator.GoToHomePage();
 
@@ -30,6 +32,11 @@ namespace WebAddressbookTests
             oldUsers.Sort();
             newUsers.Sort();
             Assert.AreEqual(oldUsers, newUsers);
+
+            foreach (UserData user in newUsers)
+            {
+                Assert.AreNotEqual(toBeRemoved.Id, user.Id);
+            }
         }
     }
 }

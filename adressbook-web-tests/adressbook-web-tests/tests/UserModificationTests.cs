@@ -27,18 +27,40 @@ namespace WebAddressbookTests
 
             List<UserData> oldUsers = app.Contacts.GetUserList();
 
+            UserData toBeModificated = oldUsers[0];
+
             app.Contacts.Modify(userData,0);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count, app.Contacts.GetUserCount());
 
             List<UserData> newUsers = app.Contacts.GetUserList();
+            int userIdIsFint = 0;
 
             oldUsers[0].Firstname = userData.Firstname;
             oldUsers[0].Lastname = userData.Lastname;
             oldUsers.Sort();
             newUsers.Sort();
             Assert.AreEqual(oldUsers, newUsers);
+
+            foreach (UserData user in newUsers)
+            {
+                if (toBeModificated.Id == user.Id)
+                {
+                    userIdIsFint = 1;
+                }
+            }
+
+            Assert.AreEqual(1, userIdIsFint);
+
+            foreach (UserData user in newUsers)
+            {
+                if (toBeModificated.Id == user.Id) 
+                {
+                    Assert.AreEqual(toBeModificated.Firstname, user.Firstname);
+                    Assert.AreEqual(toBeModificated.Lastname, user.Lastname);
+                }
+            }
         }
     }
 }

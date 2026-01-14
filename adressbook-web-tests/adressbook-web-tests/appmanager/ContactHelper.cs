@@ -161,7 +161,10 @@ namespace WebAddressbookTests
                 {
                     IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
                     IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
-                    userCache.Add(new UserData(firstname.Text, lastname.Text));
+                    userCache.Add(new UserData(firstname.Text, lastname.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("Id")
+                    });
                 }
             }
                 return new List<UserData>(userCache);
