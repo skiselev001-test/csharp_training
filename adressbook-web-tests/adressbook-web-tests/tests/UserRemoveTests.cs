@@ -18,22 +18,22 @@ namespace WebAddressbookTests
         {
             app.Contacts.CheckUsersList();
 
-            List<UserData> oldUsers = app.Contacts.GetUserList();
+            List<ContactData> oldUsers = app.Contacts.GetUserList();
 
-            UserData toBeRemoved = oldUsers[0];
+            ContactData toBeRemoved = oldUsers[0];
 
             app.Contacts.Remove(0);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count - 1, app.Contacts.GetUserCount());
 
-            List<UserData> newUsers = app.Contacts.GetUserList();
+            List<ContactData> newUsers = app.Contacts.GetUserList();
             oldUsers.RemoveAt(0);
             oldUsers.Sort();
             newUsers.Sort();
             Assert.AreEqual(oldUsers, newUsers);
 
-            foreach (UserData user in newUsers)
+            foreach (ContactData user in newUsers)
             {
                 Assert.AreNotEqual(toBeRemoved.Id, user.Id);
             }

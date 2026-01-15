@@ -16,8 +16,15 @@ namespace WebAddressbookTests
         [Test]
         public void UserCreationTest()
         {
-            UserData userData = new UserData("User1", "User1_lastname");
+            ContactData userData = new ContactData("User1", "User1_lastname");
             userData.Middlename = "User1_middlename";
+            userData.Address = "TTbb";
+            userData.Email = "test@test";
+            userData.Email2 = "test2@test";
+            userData.Email3 = "test3@test";
+            userData.HomePhone = "(000)-1212-1212";
+            userData.MobilePhone = "(000)-1212-333";
+            userData.WorkPhone = "(000)-1212-44444";
             userData.Bday = "17";
             userData.Bmonth = "January";
             userData.Byear = "2010";
@@ -25,14 +32,14 @@ namespace WebAddressbookTests
             userData.Amonth = "January";
             userData.Ayear = "2010";
 
-            List<UserData> oldUsers = app.Contacts.GetUserList();
+            List<ContactData> oldUsers = app.Contacts.GetUserList();
             
             app.Contacts.Create(userData);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count + 1, app.Contacts.GetUserCount());
 
-            List<UserData> newUsers = app.Contacts.GetUserList();
+            List<ContactData> newUsers = app.Contacts.GetUserList();
             oldUsers.Add(userData);
             oldUsers.Sort();
             newUsers.Sort();

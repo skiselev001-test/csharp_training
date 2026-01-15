@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         [Test]
         public void UserModificationTest()
         {
-            UserData userData = new UserData("User_1", "User_lastname_01");
+            ContactData userData = new ContactData("User_1", "User_lastname_01");
             userData.Bday = "17";
             userData.Bmonth = "January";
             userData.Byear = "2010";
@@ -25,16 +25,16 @@ namespace WebAddressbookTests
             userData.Ayear = "2010";
             app.Contacts.CheckUsersList();
 
-            List<UserData> oldUsers = app.Contacts.GetUserList();
+            List<ContactData> oldUsers = app.Contacts.GetUserList();
 
-            UserData toBeModificated = oldUsers[0];
+            ContactData toBeModificated = oldUsers[0];
 
             app.Contacts.Modify(userData,0);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count, app.Contacts.GetUserCount());
 
-            List<UserData> newUsers = app.Contacts.GetUserList();
+            List<ContactData> newUsers = app.Contacts.GetUserList();
             int userIdIsFint = 0;
 
             oldUsers[0].Firstname = userData.Firstname;
@@ -43,7 +43,7 @@ namespace WebAddressbookTests
             newUsers.Sort();
             Assert.AreEqual(oldUsers, newUsers);
 
-            foreach (UserData user in newUsers)
+            foreach (ContactData user in newUsers)
             {
                 if (toBeModificated.Id == user.Id)
                 {
@@ -53,7 +53,7 @@ namespace WebAddressbookTests
 
             Assert.AreEqual(1, userIdIsFint);
 
-            foreach (UserData user in newUsers)
+            foreach (ContactData user in newUsers)
             {
                 if (toBeModificated.Id == user.Id) 
                 {

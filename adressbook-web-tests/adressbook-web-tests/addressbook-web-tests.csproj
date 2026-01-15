@@ -156,6 +156,7 @@
     <Compile Include="temp\Square.cs" />
     <Compile Include="temp\Square_1.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
+    <Compile Include="tests\ContactInformationTests.cs" />
     <Compile Include="tests\LoginTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="temp\UnitTest1.cs" />
@@ -167,7 +168,7 @@
     <Compile Include="tests\UserModificationTests.cs" />
     <Compile Include="tests\UserCreationTests.cs" />
     <Compile Include="temp\UnitTest_1.cs" />
-    <Compile Include="model\UserData.cs" />
+    <Compile Include="model\ContactData.cs" />
     <Compile Include="tests\GroupModificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
