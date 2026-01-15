@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>,IComparable<ContactData>
     {
         private string allPhones;
+        private object allEmails;
 
         public ContactData(string firstname, string lastname) 
         { 
@@ -93,14 +95,30 @@ namespace WebAddressbookTests
                 allPhones = value;
             }
         }
-
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                { return AllEmails; }
+                else
+                { 
+                    return (CleanUpp(Email) + CleanUpp(Email2) + CleanUpp(Email3)).Trim();
+                }
+            }
+            set 
+            {
+                allEmails = value; 
+            }
+        }
         private string CleanUpp(string phone)
         {
             if (phone == null || phone =="")
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            // return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ ()-]", "") + "\r\n";
         }
     }
 }

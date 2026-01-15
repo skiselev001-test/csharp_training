@@ -191,12 +191,13 @@ namespace WebAddressbookTests
             string firstName = cells[2].Text;
             string address = cells[3].Text;
             string allPhones = cells[5].Text;
+            string allEmails = cells[4].Text;
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
                 AllPhones = allPhones,
-
+                AllEmails = allEmails
             };
 
         }
@@ -213,12 +214,19 @@ namespace WebAddressbookTests
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("Value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("Value");
 
+            string email = driver.FindElement(By.Name("email")).GetAttribute("Value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("Value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("Value");
+
             return new ContactData(firstName, lastName)
             {
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
-                WorkPhone = workPhone
+                WorkPhone = workPhone,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
 
             };
         }
