@@ -29,12 +29,8 @@ namespace WebAddressbookTests
         
 
         [Test, TestCaseSource("RandomGroupDataProvider")]
-        public void GroupCreationTest()
+        public void GroupCreationTest(GroupData group)
         {
-            GroupData group = new GroupData("group1");
-            group.Header = "group1";
-            group.Footer = "group1";
-
             List<GroupData> oldGroups = app.Groups.GetGropList();
 
             app.Groups.Create(group);
