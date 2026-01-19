@@ -135,7 +135,7 @@ namespace WebAddressbookTests
                 return "";
             }
             // return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
-            return Regex.Replace(phone, "[ ()-HMW:]", "") + "\r\n";
+            return Regex.Replace(phone, "[ ()HMW:-]", "") + "\r\n";
         }
     }
 }

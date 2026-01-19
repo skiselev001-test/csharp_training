@@ -259,6 +259,11 @@ namespace WebAddressbookTests
                 }
             }
 
+            while (emails.Count() < 4)
+            {
+                emails.Add("");
+            }
+
             return new ContactData(firstName, lastName)
             {
                 Middlename = middleName,
