@@ -218,6 +218,8 @@ namespace WebAddressbookTests
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("Value");
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("Value");
 
+            string homePage = driver.FindElement(By.Name("homepage")).GetAttribute("Value");
+
             return new ContactData(firstName, lastName)
             {
                 Address = address,
@@ -226,7 +228,8 @@ namespace WebAddressbookTests
                 WorkPhone = workPhone,
                 Email = email,
                 Email2 = email2,
-                Email3 = email3
+                Email3 = email3,
+                Homepage = homePage
 
             };
         }
@@ -236,18 +239,14 @@ namespace WebAddressbookTests
             manager.Navigator.OpenHomePage();
             manager.Contacts.SelectUserProperty(index);
 
-            // IList<IWebElement> cells = driver.FindElements(By.CssSelector("body div#content")).;
-            //IList<IWebElement> cells = driver.FindElement(By.Id("content")).FindElements(By.TagName("br"));
             IWebElement element = driver.FindElement(By.Id("content"));
             string[] allName = element.FindElement(By.CssSelector("b")).Text.Split(' ');
             string firstName = allName[0];
             string middleName = allName[1];
             string lastName = allName[2];
             
-            // string address = driver.FindElement(By.XPath("//div[@id=\"content\"]/br/following-sibling::text()")).Text;
-            // string mobilePhone = element.FindElements(By.TagName("br"))[3].Text; ;
-            // string homePhone = element.FindElements(By.TagName("br"))[2].Text;
-            // string workPhone = element.FindElements(By.TagName("br"))[4].Text;
+           // IList<IWebElement> iAddress = driver.FindElements(By.XPath("//br/following-sibling::text()"));
+           // string address = iAddress[0].Text;
             IList<IWebElement> emailElements = element.FindElements(By.CssSelector("a"));
             List<string> emails = new List<string>();
             foreach (IWebElement email in emailElements)
@@ -259,34 +258,14 @@ namespace WebAddressbookTests
 
                 }
             }
-           
-            
-            //string email2 = element.FindElements(By.TagName("br"))[7].FindElement(By.TagName("a")).Text;
-            //string email3 = element.FindElements(By.TagName("br"))[8].FindElement(By.TagName("a")).Text;
-            //string[] allEmails = element.FindElements(By.TagName("a")).T;
-
-            /*string allName = driver.FindElement(By.CssSelector("body div#content>b")).Text;
-            string address = driver.FindElement(By.CssSelector("body div#content>br")).Text;
-            //string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("Value");
-            //string address = driver.FindElement(By.Name("address")).Text;
-
-            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("Value");
-            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("Value");
-            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("Value");
-
-            string email = driver.FindElement(By.Name("email")).GetAttribute("Value");
-            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("Value");
-            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("Value"); */
-
-
 
             return new ContactData(firstName, lastName)
             {
                 Middlename = middleName,
                 //Address = address,
-              //  HomePhone = homePhone,
-               // MobilePhone = mobilePhone,
-               // WorkPhone = workPhone,
+                //HomePhone = homePhone,
+                //MobilePhone = mobilePhone,
+                //WorkPhone = workPhone,
                 Email = emails[0],
                 Email2 = emails[1],
                 Email3 = emails[2],
