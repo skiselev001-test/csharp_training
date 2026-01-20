@@ -30,13 +30,10 @@ namespace WebAddressbookTests
         public void TestContactInformationFromPropertyForm()
         {
             ContactData fromEditForm = app.Contacts.GetInformationFromEditForm(0);
-            ContactData fromPropertyForm = app.Contacts.GetInformationPropertyForm(0);
+            String fromPropertyForm = app.Contacts.GetInformationPropertyForm(0);
 
-            Assert.AreEqual(fromEditForm, fromPropertyForm);
-           // Assert.AreEqual(fromTable.Address, fromForm.Address);
-           // Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
-            Assert.AreEqual(fromEditForm.AllEmails, fromPropertyForm.AllEmails);
-            Assert.AreEqual(fromEditForm.Homepage, fromPropertyForm.Homepage);
+            Assert.AreEqual(Regex.Replace(fromEditForm.AllFields, "[ ()HMW:\bomepage\b\\r\\n-]", ""), 
+                Regex.Replace(fromPropertyForm, "[ ()HMW:\bomepage\b\\r\\n-]", ""));
         }
     }
 }

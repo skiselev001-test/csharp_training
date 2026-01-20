@@ -208,6 +208,10 @@ namespace WebAddressbookTests
             manager.Contacts.SelectUserToModify(index);
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("Value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("Value");
+            string middletName = driver.FindElement(By.Name("middlename")).GetAttribute("Value");
+            string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("Value");
+            string company = driver.FindElement(By.Name("company")).GetAttribute("Value");
+            string title = driver.FindElement(By.Name("title")).GetAttribute("Value");
             string address = driver.FindElement(By.Name("address")).Text;
 
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("Value");
@@ -222,6 +226,10 @@ namespace WebAddressbookTests
 
             return new ContactData(firstName, lastName)
             {
+                Middlename = middletName,
+                Nickname = nickName,
+                Company = company,
+                Title = title,
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
@@ -234,12 +242,17 @@ namespace WebAddressbookTests
             };
         }
 
-        internal ContactData GetInformationPropertyForm(int index)
+        internal String GetInformationPropertyForm(int index)
         {
             manager.Navigator.OpenHomePage();
             manager.Contacts.SelectUserProperty(index);
 
-            IWebElement element = driver.FindElement(By.Id("content"));
+            string textElement = driver.FindElement(By.Id("content")).Text;
+
+            return textElement;
+
+       /*     IWebElement element = driver.FindElement(By.Id("content"));
+            string textElement = element.Text;
             string[] allName = element.FindElement(By.CssSelector("b")).Text.Split(' ');
             string firstName = allName[0];
             string middleName = allName[1];
@@ -263,7 +276,7 @@ namespace WebAddressbookTests
             {
                 emails.Add("");
             }
-
+       
             return new ContactData(firstName, lastName)
             {
                 Middlename = middleName,
@@ -277,6 +290,7 @@ namespace WebAddressbookTests
                 Homepage = emails[3]
 
             };
+       */
         }
 
         private ContactHelper SelectUserProperty(int index)
