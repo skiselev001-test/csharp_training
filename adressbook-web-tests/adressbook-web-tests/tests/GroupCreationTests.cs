@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using OpenQA.Selenium.DevTools.V141.Audits;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WebAddressbookTests
 {
@@ -55,8 +56,14 @@ namespace WebAddressbookTests
             return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
         }
 
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+            List<GroupData> groups = new List<GroupData>();
 
-        [Test, TestCaseSource("GroupDataFromXmlFile")]
+            return JsonConvert.DeserializeObject<List<GroupData>>(File.ReadAllText(@"groups.json"));
+        }
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGropList();
