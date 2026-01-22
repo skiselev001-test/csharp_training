@@ -1,11 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Xml.Serialization;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace WebAddressbookTests
@@ -39,7 +42,45 @@ namespace WebAddressbookTests
             }
             return users;
         }
-        [Test, TestCaseSource("RandomGroupDataProvider")]
+
+        public static IEnumerable<ContactData> ContactDataFromCsvFile()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+
+            string[] lines = File.ReadAllLines(@"contacts.csv");
+            foreach (string l in lines)
+            {
+                string[] parts = l.Split(',');
+                contacts.Add(new ContactData(parts[0], parts[1])
+                {
+                    Middlename = parts[2],
+                    Nickname = parts[3],
+                    Title = parts[4],
+                    Company = parts[5],
+                    Address = parts[6],
+                    HomePhone = parts[7],
+                    MobilePhone = parts[8],
+                    WorkPhone = parts[9],
+                    Email = parts[10],
+                    Email2 = parts[11],
+                    Email3 = parts[12],
+                    Homepage = parts[13]
+                });
+            }
+
+            return contacts;
+        }
+
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
+            return (List<ContactData>)new XmlSerializer(typeof(List<ContactData>)).Deserialize(new StreamReader(@"contacts.xml"));
+        }
+
+        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(File.ReadAllText(@"contacts.json"));
+        }
+        [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void UserCreationTest(ContactData userData)
         {
             /*ContactData userData = new ContactData("User1", "User1_lastname");

@@ -1,1 +1,20 @@
-[{"Name":"pLy","Header":"drzy","Footer":"^cOTF","Id":null},{"Name":"BgsLvq","Header":"o`rt|","Footer":"`p","Id":null},{"Name":"k[WUX_ECvM","Header":"CEjut","Footer":"kN`ar\\","Id":null}]
+[
+  {
+    "Name": "JSONGroupname1",
+    "Header": "drzy",
+    "Footer": "^cOTF",
+    "Id": null
+  },
+  {
+    "Name": "JSONGroupname2",
+    "Header": "o`rt|",
+    "Footer": "`p",
+    "Id": null
+  },
+  {
+    "Name": "JSONGroupname3",
+    "Header": "CEjut",
+    "Footer": "kN`ar\\",
+    "Id": null
+  }
+]

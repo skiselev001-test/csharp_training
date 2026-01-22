@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfGroupData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <GroupData>
-    <Name>wiOMqve_</Name>
+    <Name>XMLGroupname1</Name>
     <Header>iiUL</Header>
     <Footer>hYGw_gB`</Footer>
   </GroupData>
   <GroupData>
-    <Name>[</Name>
+    <Name>XMLGroupname1</Name>
     <Header>\</Header>
     <Footer />
   </GroupData>
