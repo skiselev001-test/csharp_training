@@ -299,6 +299,85 @@ namespace WebAddressbookTests
             driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + (index + 2) + ") td:nth-child(7)>a")).Click();
             return this;
         }
+
+        internal string GetAllFieldsToComparePropertyForm(ContactData fromEditForm)
+        {
+            string allFields = "";
+
+            if ( fromEditForm.Firstname.Length > 0 )
+            {
+                allFields = allFields + fromEditForm.Firstname.ToString();
+            }
+            if ( fromEditForm.Middlename.Length > 0)
+                if (fromEditForm.Firstname.Length > 0)
+                {
+                    allFields = allFields + " " + fromEditForm.Middlename.ToString();
+                }
+                else
+                {
+                    allFields = allFields + fromEditForm.Middlename.ToString();
+                }
+            if (fromEditForm.Lastname.Length > 0)
+                if (fromEditForm.Firstname.Length > 0 || fromEditForm.Middlename.Length > 0)
+                {
+                    allFields = allFields + " " + fromEditForm.Lastname.ToString();
+                }
+                else
+                {
+                    allFields = allFields + fromEditForm.Lastname.ToString();
+                }
+            if (fromEditForm.Firstname.Length > 0 || fromEditForm.Middlename.Length > 0 || fromEditForm.Lastname.Length > 0)
+            {
+                allFields = allFields + "\r\n";
+            }
+            if (fromEditForm.Nickname.Length > 0)
+            {
+                allFields = allFields + fromEditForm.Nickname.ToString() + "\r\n";
+            }
+            if (fromEditForm.Title.Length > 0)
+            {
+                allFields = allFields + fromEditForm.Title.ToString() + "\r\n";
+            }
+            if (fromEditForm.Company.Length > 0)
+            {
+                allFields = allFields + fromEditForm.Company.ToString() + "\r\n";
+            }
+            if (fromEditForm.Address.Length > 0)
+            {
+                allFields = allFields + fromEditForm.Address.ToString() + "\r\n";
+            }
+            if (fromEditForm.HomePhone.Length > 0)
+            {
+                allFields = allFields + "\r\n" + "H: " + fromEditForm.HomePhone.ToString();
+            }
+            if (fromEditForm.MobilePhone.Length > 0)
+            {
+                allFields = allFields + "\r\n" + "M: " + fromEditForm.MobilePhone.ToString();
+            }
+            if (fromEditForm.MobilePhone.Length > 0)
+            {
+                allFields = allFields + "\r\n" + "W: " + fromEditForm.WorkPhone.ToString();
+            }
+            allFields = allFields + "\r\n";
+            if (fromEditForm.Email.Length > 0)
+            {
+                allFields = allFields + "\r\n" + fromEditForm.Email.ToString();
+            }
+            if (fromEditForm.Email2.Length > 0)
+            {
+                allFields = allFields + "\r\n" + fromEditForm.Email2.ToString();
+            }
+            if (fromEditForm.Email3.Length > 0)
+            {
+                allFields = allFields + "\r\n" + fromEditForm.Email3.ToString();
+            }
+            if (fromEditForm.Homepage.Length > 0)
+            {
+                allFields = allFields + "\r\n" + "Homepage:" + "\r\n" + fromEditForm.Homepage.ToString();
+            }
+
+            return allFields.Trim();
+        }
     }
 }
 //ICollection<IWebElement> elementsFirstname = driver.FindElements(By.CssSelector("[name=\"entry\"]>td:nth-child(3)"));

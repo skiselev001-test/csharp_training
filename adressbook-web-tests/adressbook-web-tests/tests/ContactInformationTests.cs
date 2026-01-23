@@ -33,7 +33,8 @@ namespace WebAddressbookTests
             String fromPropertyForm = app.Contacts.GetInformationPropertyForm(0);
             string fromEditFormAllFields = fromEditForm.AllFields;
 
-            Assert.AreEqual(fromPropertyForm, fromEditForm.AllFields);
+            string fromPropertyFormAllFields = app.Contacts.GetAllFieldsToComparePropertyForm(fromEditForm);
+            Assert.AreEqual(fromPropertyForm, fromPropertyFormAllFields);
            // Assert.AreEqual(Regex.Replace(fromEditForm.AllFields, "[ ()HMW:\bomepage\b\\r\\n-]", ""), 
            //     Regex.Replace(fromPropertyForm, "[ ()HMW:\bomepage\b\\r\\n-]", ""));
         }
