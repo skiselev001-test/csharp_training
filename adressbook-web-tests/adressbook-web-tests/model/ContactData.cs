@@ -140,10 +140,10 @@ namespace WebAddressbookTests
                 { return allFields; }
                 else
                 {
-                    return (CleanUpp(Firstname + Middlename + Lastname) + CleanUpp(Nickname)
-                        + CleanUpp(Title) + CleanUpp(Company) + CleanUpp(Address) 
-                        + CleanUpp(HomePhone) + CleanUpp(MobilePhone) + CleanUpp(WorkPhone) 
-                        + CleanUpp(Email) + CleanUpp(Email2) + CleanUpp(Email3) + CleanUpp(Homepage)).Trim();
+                    return (Firstname + " " + Middlename + " " + Lastname + "\r\n" + Nickname + "\r\n"
+                        + Title + "\r\n" + Company + "\r\n" + Address + "\r\n\r\n" 
+                        + "H: " + HomePhone + "\r\n" + "M: " + MobilePhone + "\r\n" + "W: " + WorkPhone + "\r\n\r\n"
+                        + Email + "\r\n" + Email2 + "\r\n" + Email3 + "\r\n"  + "Homepage:" + "\r\n" + Homepage).Trim();
                 }
             }
             set
@@ -158,7 +158,7 @@ namespace WebAddressbookTests
                 return "";
             }
             // return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
-            return Regex.Replace(phone, "[ ()HMW:-]", "") + "\r\n";
+            return Regex.Replace(phone, "[ ()-]", "") + "\r\n";
         }
     }
 }

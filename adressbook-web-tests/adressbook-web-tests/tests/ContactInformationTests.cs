@@ -31,9 +31,11 @@ namespace WebAddressbookTests
         {
             ContactData fromEditForm = app.Contacts.GetInformationFromEditForm(0);
             String fromPropertyForm = app.Contacts.GetInformationPropertyForm(0);
+            string fromEditFormAllFields = fromEditForm.AllFields;
 
-            Assert.AreEqual(Regex.Replace(fromEditForm.AllFields, "[ ()HMW:\bomepage\b\\r\\n-]", ""), 
-                Regex.Replace(fromPropertyForm, "[ ()HMW:\bomepage\b\\r\\n-]", ""));
+            Assert.AreEqual(fromPropertyForm, fromEditForm.AllFields);
+           // Assert.AreEqual(Regex.Replace(fromEditForm.AllFields, "[ ()HMW:\bomepage\b\\r\\n-]", ""), 
+           //     Regex.Replace(fromPropertyForm, "[ ()HMW:\bomepage\b\\r\\n-]", ""));
         }
     }
 }
