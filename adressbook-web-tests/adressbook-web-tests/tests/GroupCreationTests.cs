@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
@@ -31,10 +32,10 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        public static  IEnumerable<GroupData> GroupDataFromCsvFile()
+        public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
             List<GroupData> groups = new List<GroupData>();
-            
+
             string[] lines = File.ReadAllLines(@"groups.csv");
             foreach (string l in lines)
             {
@@ -52,7 +53,7 @@ namespace WebAddressbookTests
 
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
+            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader(@"groups.xml"));
         }
 
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
@@ -89,7 +90,7 @@ namespace WebAddressbookTests
 
             app.Groups.Create(group);
 
-            Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupCount());
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGropList();
             oldGroups.Add(group);
@@ -134,6 +135,24 @@ namespace WebAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGropList();
+            DateTime end =DateTime.Now;
+            System.Console.Out.Write(end.Subtract(start).ToString() + " - time from UI \r\n");
+
+            start = DateTime.Now;
+            List<GroupData> fromDB = GroupData.GetAll();
+           // AddressbookDB db =new AddressbookDB();
+           // List<GroupData> fromDB = (from g in db.Groups select g).ToList();
+           // db.Close();
+            end = DateTime.Now;
+            System.Console.Out.Write(end.Subtract(start).ToString() + " - time from DBConnectivity");
+
         }
     }
 }
