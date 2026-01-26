@@ -354,7 +354,7 @@ namespace WebAddressbookTests
             {
                 allFields = allFields + "\r\n" + "M: " + fromEditForm.MobilePhone.ToString();
             }
-            if (fromEditForm.MobilePhone.Length > 0)
+            if (fromEditForm.WorkPhone.Length > 0)
             {
                 allFields = allFields + "\r\n" + "W: " + fromEditForm.WorkPhone.ToString();
             }
