@@ -87,6 +87,9 @@ namespace WebAddressbookTests
         public string Amonth { get; set; }
         public string Ayear { get; set; }
 
+        [Column(Name = "Deprecated")]
+        public string Deprecated { get; set; }
+
         [Column(Name = "id"), PrimaryKey]
         public string Id { get; set; }
         public string AllPhones
@@ -165,6 +168,14 @@ namespace WebAddressbookTests
             }
             // return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
             return Regex.Replace(phone, "[ ()-]", "") + "\r\n";
+        }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from c in db.Contacts.Where(x => x.Deprecated == null) select c).ToList();
+            }
         }
     }
 }

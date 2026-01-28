@@ -195,6 +195,7 @@
     <Compile Include="appmanager\GroupHelper.cs" />
     <Compile Include="temp\Square.cs" />
     <Compile Include="temp\Square_1.cs" />
+    <Compile Include="tests\AddingContactToGroupTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="tests\ContactInformationTests.cs" />
     <Compile Include="tests\GroupTestBase.cs" />

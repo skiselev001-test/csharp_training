@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinqToDB;
 using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
@@ -71,7 +72,7 @@ namespace WebAddressbookTests
             using (AddressbookDB db = new AddressbookDB())
             {
                 return (from c in db.Contacts
-                    from gcr in db.GCR.Where(p => p.GroupId == Id && p.ContactId == c.Id)
+                    from gcr in db.GCR.Where(p => p.GroupId == Id && p.ContactId == c.Id && c.Deprecated == null)
                     select c).Distinct().ToList();
             }
         }
