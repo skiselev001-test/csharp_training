@@ -154,5 +154,14 @@ namespace WebAddressbookTests
             System.Console.Out.Write(end.Subtract(start).ToString() + " - time from DBConnectivity");
 
         }
+
+        [Test]
+        public void TestDBConnectivity2()
+        {
+            foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact);
+            }
+        }
     }
 }

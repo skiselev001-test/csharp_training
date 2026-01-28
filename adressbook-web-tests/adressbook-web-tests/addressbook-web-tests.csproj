@@ -183,6 +183,7 @@
     <Compile Include="model\AccauntData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="model\AddressbookDB.cs" />
+    <Compile Include="model\GroupContactRelation.cs" />
     <Compile Include="temp\Circle.cs" />
     <Compile Include="temp\Class1.cs" />
     <Compile Include="appmanager\ContactHelper.cs" />
