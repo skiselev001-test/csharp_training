@@ -9,22 +9,22 @@ using System.Collections.Generic;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupRemoveTests : AuthTestBase
+    public class GroupRemoveTests : GroupTestBase
     {
         [Test]
         public void GroupRemoveTest()
         {
             app.Groups.CheckGroupList();
 
-            List<GroupData> oldGroups = app.Groups.GetGropList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             GroupData toBeRemoved = oldGroups[0];
             
-            app.Groups.Remove(0);
+            app.Groups.Remove(toBeRemoved);
 
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups = app.Groups.GetGropList();
+            List<GroupData> newGroups = GroupData.GetAll();
 
             oldGroups.RemoveAt(0);
             oldGroups.Sort();
