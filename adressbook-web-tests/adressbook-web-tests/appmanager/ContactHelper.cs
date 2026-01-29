@@ -419,9 +419,26 @@ namespace WebAddressbookTests
 
         }
 
+
+        public void DeleteContactFromGroup(ContactData contactToDelete, GroupData group)
+        {
+            manager.Navigator.OpenHomePage();
+            SelectGroupFilter(group.Name);
+            SelectContact(contactToDelete.Id);
+            RemoveContactFromGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+       
         private void CommitAddengContactToGroup()
         {
             driver.FindElement(By.Name("add")).Click();
+        }
+
+        private void RemoveContactFromGroup()
+        {
+            driver.FindElement(By.Name("remove")).Click();
         }
 
         private void SelectGroupToAdd(string name)
@@ -438,6 +455,11 @@ namespace WebAddressbookTests
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }
+        private void SelectGroupFilter(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
+        }
+
     }
 }
 //ICollection<IWebElement> elementsFirstname = driver.FindElements(By.CssSelector("[name=\"entry\"]>td:nth-child(3)"));
