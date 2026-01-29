@@ -11,7 +11,7 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UserModificationTests : AuthTestBase
+    public class UserModificationTests : UserTestBase
     {
         [Test]
         public void UserModificationTest()
@@ -25,16 +25,18 @@ namespace WebAddressbookTests
             userData.Ayear = "2010";
             app.Contacts.CheckUsersList();
 
-            List<ContactData> oldUsers = app.Contacts.GetUserList();
-
+            //List<ContactData> oldUsers = app.Contacts.GetUserList();
+            List<ContactData> oldUsers = ContactData.GetAll();
             ContactData toBeModificated = oldUsers[0];
 
-            app.Contacts.Modify(userData,0);
+            app.Contacts.Modify(userData,toBeModificated);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count, app.Contacts.GetUserCount());
 
-            List<ContactData> newUsers = app.Contacts.GetUserList();
+            //List<ContactData> newUsers = app.Contacts.GetUserList();
+            List<ContactData> newUsers = ContactData.GetAll();
+
             int userIdIsFint = 0;
 
             oldUsers[0].Firstname = userData.Firstname;

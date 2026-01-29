@@ -31,12 +31,29 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper Modify(ContactData userData, ContactData toBeModificated)
+        {
+            SelectUserToModify(toBeModificated.Id);
+            FillUserForm(userData);
+            SubmitUserModify();
+            return this;
+        }
+
+
         public ContactHelper Remove(int userIndex)
         {
             SelectUserToRemove(userIndex);
             SubmitUserRemove();
             return this;
         }
+
+        public ContactHelper Remove(ContactData toBeRemoved)
+        {
+            SelectUserToRemove(toBeRemoved.Id);
+            SubmitUserRemove();
+            return this;
+        }
+
 
         public ContactHelper FillUserForm(ContactData user)
         {
@@ -142,6 +159,12 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private ContactHelper SelectUserToModify(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])/../..//td[8]/a")).Click(); 
+            return this;
+        }
         private ContactHelper SubmitUserRemove()
         {
             driver.FindElement(By.Name("delete")).Click();
@@ -149,6 +172,11 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private ContactHelper SelectUserToRemove(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            return this;
+        }
         private ContactHelper SelectUserToRemove(int userIndex)
         {
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (userIndex+2) + "]/td/input")).Click(); 

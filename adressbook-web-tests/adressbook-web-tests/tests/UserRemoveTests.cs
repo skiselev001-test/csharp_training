@@ -11,23 +11,25 @@ using System.Collections.Generic;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UserRemoveTests : AuthTestBase
+    public class UserRemoveTests : UserTestBase
     {
         [Test]
         public void UserRemoveTest()
         {
             app.Contacts.CheckUsersList();
 
-            List<ContactData> oldUsers = app.Contacts.GetUserList();
+            // List<ContactData> oldUsers = app.Contacts.GetUserList();
+            List<ContactData> oldUsers = ContactData.GetAll();
 
             ContactData toBeRemoved = oldUsers[0];
 
-            app.Contacts.Remove(0);
+            app.Contacts.Remove(toBeRemoved);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count - 1, app.Contacts.GetUserCount());
 
-            List<ContactData> newUsers = app.Contacts.GetUserList();
+            //List<ContactData> newUsers = app.Contacts.GetUserList();
+            List<ContactData> newUsers = ContactData.GetAll();
             oldUsers.RemoveAt(0);
             oldUsers.Sort();
             newUsers.Sort();

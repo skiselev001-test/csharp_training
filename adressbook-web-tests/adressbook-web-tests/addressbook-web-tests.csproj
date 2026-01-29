@@ -212,6 +212,7 @@
     <Compile Include="temp\UnitTest_1.cs" />
     <Compile Include="model\ContactData.cs" />
     <Compile Include="tests\GroupModificationTests.cs" />
+    <Compile Include="tests\UserTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

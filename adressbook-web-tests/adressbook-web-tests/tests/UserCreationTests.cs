@@ -14,7 +14,7 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UserCreationTests : AuthTestBase
+    public class UserCreationTests : UserTestBase
     {
         public static IEnumerable<ContactData> RandomGroupDataProvider()
         {
@@ -99,14 +99,16 @@ namespace WebAddressbookTests
             userData.Amonth = "January";
             userData.Ayear = "2010";*/
 
-            List<ContactData> oldUsers = app.Contacts.GetUserList();
-            
+            //List<ContactData> oldUsers = app.Contacts.GetUserList();
+            List<ContactData> oldUsers = ContactData.GetAll();
+
             app.Contacts.Create(userData);
             app.Navigator.GoToHomePage();
 
             Assert.AreEqual(oldUsers.Count + 1, app.Contacts.GetUserCount());
 
-            List<ContactData> newUsers = app.Contacts.GetUserList();
+            //List<ContactData> newUsers = app.Contacts.GetUserList();
+            List<ContactData> newUsers = ContactData.GetAll();
             oldUsers.Add(userData);
             oldUsers.Sort();
             newUsers.Sort();
