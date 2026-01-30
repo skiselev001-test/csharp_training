@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WebAddressbookTests
@@ -72,7 +73,16 @@ namespace WebAddressbookTests
             return this;
         }
 
-        
+        public GroupHelper GroupPresence()
+        {
+            if (GroupData.GetAll().Count() == 0)
+            {
+                Random rnd = new Random();
+                Create(new GroupData("group_n_" + rnd.Next(1, 101) + rnd.Next(1, 101)));
+            }
+            return this;
+        }
+
 
         private GroupHelper SubmitGroupModify()
         {
@@ -168,6 +178,6 @@ namespace WebAddressbookTests
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 
-       
+        
     }
 }

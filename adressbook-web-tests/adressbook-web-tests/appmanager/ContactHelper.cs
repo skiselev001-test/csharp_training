@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -430,7 +431,34 @@ namespace WebAddressbookTests
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
-       
+
+        public ContactHelper ContactPresence(GroupData group)
+        {
+            if ((ContactData.GetAll().Count - group.GetContacts().Count) == 0)
+            {
+                Random rnd = new Random();
+                Create(new ContactData("user_01n" + rnd.Next(1, 101), "LastName_user_01n" + rnd.Next(1, 101)));
+            }
+                
+            return this;
+        }
+
+
+        public ContactHelper ContactPresenceFor(GroupData group)
+        {
+            if ((ContactData.GetAll().Count - group.GetContacts().Count) == ContactData.GetAll().Count)
+            {
+                List<ContactData> oldList = ContactData.GetAll();
+                Random rnd = new Random();
+                ContactData contact = new ContactData("user_01n" + rnd.Next(1, 101), "LastName_user_01n" + rnd.Next(1, 101));
+                Create(contact);
+                List<ContactData> newList = ContactData.GetAll();
+                AddContactToGroup(newList.Except(oldList).First(), group);
+            }
+
+            return this;
+        }
+
         private void CommitAddengContactToGroup()
         {
             driver.FindElement(By.Name("add")).Click();

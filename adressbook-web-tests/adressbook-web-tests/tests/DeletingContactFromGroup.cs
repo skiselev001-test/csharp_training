@@ -13,7 +13,9 @@ namespace WebAddressbookTests
 
         public void DeletingContactFromGroupTest()
         {
-            GroupData group = GroupData.GetAll()[1];
+            app.Groups.GroupPresence();
+            GroupData group = GroupData.GetAll()[0];
+            app.Contacts.ContactPresenceFor(group);
             List<ContactData> oldList = group.GetContacts();
             ContactData contactToDelete = oldList[0];
 
