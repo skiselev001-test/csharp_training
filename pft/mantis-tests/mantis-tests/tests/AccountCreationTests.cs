@@ -30,6 +30,9 @@ namespace mantis_tests
                 Email = "testuser@localhost.locaoldomain"
             };
             
+            app.James.Delete(account);
+            app.James.Add(account);
+
             app.Registration.Register(account);
         }
 

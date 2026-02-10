@@ -12,3 +12,7 @@ $g_crypto_master_salt     = 'LYdDel+v7ovj0+o1PBQNOSMX8XJ8w9OyI9byndfIKR4=';
 $g_path                   = 'http://localhost/mantisbt-2.28.0/';
 
 $g_signup_use_captcha = OFF;
+
+$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
+$g_smtp_port = '25';
+$g_smtp_host = 'localhost';
