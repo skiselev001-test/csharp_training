@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -18,11 +19,31 @@ namespace mantis_tests
             OpenRegistrationForm();
             FillRegistrationForm(account);
             SubmitRegistration();
-
+            String url = GetConfirmationUrl(account);
+            FillPasswordForm(url, account);
+            SubmitPasswordForm();
 
         }
 
-       
+        private string GetConfirmationUrl(AccauntData account)
+        {
+            String message = manager.Mail.GetLastMail(account);
+            Match match = Regex.Match(message, @"http://\S*");
+            return match.Value;
+        }
+
+        private void FillPasswordForm(string url, AccauntData account)
+        {
+            driver.Url = url;
+            driver.FindElement(By.Name("password")).SendKeys(account.Password);
+            driver.FindElement(By.Name("password_confirm")).SendKeys(account.Password);
+            
+        }
+
+        private void SubmitPasswordForm()
+        {
+            driver.FindElement(By.CssSelector("button[type=\"submit\"]")).Click();
+        }
 
         private void SubmitRegistration()
         {

@@ -25,7 +25,8 @@ namespace mantis_tests
             baseURL = "http://localhost";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
-            James = new JamesHelper(this); 
+            James = new JamesHelper(this);
+            Mail = new MailHelper(this);
         }
 
         public static ApplicationManager GetInstance()
@@ -49,5 +50,6 @@ namespace mantis_tests
 
         public FtpHelper Ftp { get; set; }
         public JamesHelper James { get; set; }
+        public MailHelper Mail { get; set; }
     }
 }
