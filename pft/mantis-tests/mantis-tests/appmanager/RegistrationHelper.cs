@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using NUnit.Framework;
-using OpenQA.Selenium;
+using System.Threading.Tasks;
 
 namespace mantis_tests
 {
@@ -60,9 +61,18 @@ namespace mantis_tests
         {
             driver.FindElements(By.CssSelector("a.back-to-login-link"))[0].Click();
         }
-        private void OpenMainPage()
+        public void OpenMainPage()
         {
             manager.Driver.Url = "http://localhost/mantisbt-2.28.0/login_page.php";
+        }
+
+        internal void Login(AccauntData account)
+        {
+            driver.FindElement(By.Name("username")).SendKeys(account.Name);
+            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+            driver.FindElement(By.Name("password")).SendKeys(account.Password);
+            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+            driver.FindElement(By.CssSelector("i.fa-gears")).Click();
         }
     }
 }
