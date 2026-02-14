@@ -14,7 +14,7 @@ namespace mantis_tests
     {
         public RegistrationHelper(ApplicationManager manager) : base(manager) { }
 
-        public void Register(AccauntData account)
+        public void Register(AccountData account)
         {
             OpenMainPage();
             OpenRegistrationForm();
@@ -23,17 +23,33 @@ namespace mantis_tests
             String url = GetConfirmationUrl(account);
             FillPasswordForm(url, account);
             SubmitPasswordForm();
+            OpenMainPage();
+            Assert.IsTrue(Login(account));
 
         }
 
-        private string GetConfirmationUrl(AccauntData account)
+        public void CheckExistAccount(AccountData account)
+        {
+            OpenMainPage();
+            if (Login(account))
+            {
+                Random rnd = new Random();
+                int randomNumber = rnd.Next(1, 1001);
+                account.Name = account.Name + randomNumber.ToString();
+                account.Email = account.Name + "@localhost.localdomain";
+                driver.FindElement(By.CssSelector("span.user-info")).Click();
+                driver.FindElement(By.XPath("//i[@class='fa fa-sign-out ace-icon']/..")).Click();
+            }
+        }
+
+        private string GetConfirmationUrl(AccountData account)
         {
             String message = manager.Mail.GetLastMail(account);
             Match match = Regex.Match(message, @"http://\S*");
             return match.Value;
         }
 
-        private void FillPasswordForm(string url, AccauntData account)
+        private void FillPasswordForm(string url, AccountData account)
         {
             driver.Url = url;
             driver.FindElement(By.Name("password")).SendKeys(account.Password);
@@ -51,7 +67,7 @@ namespace mantis_tests
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
 
-        private void FillRegistrationForm(AccauntData account)
+        private void FillRegistrationForm(AccountData account)
         {
             driver.FindElement(By.Name("username")).SendKeys(account.Name);
             driver.FindElement(By.Name("email")).SendKeys(account.Email);
@@ -66,13 +82,21 @@ namespace mantis_tests
             manager.Driver.Url = "http://localhost/mantisbt-2.28.0/login_page.php";
         }
 
-        internal void Login(AccauntData account)
+        internal bool Login(AccountData account)
         {
             driver.FindElement(By.Name("username")).SendKeys(account.Name);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
             driver.FindElement(By.Name("password")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
-            driver.FindElement(By.CssSelector("i.fa-gears")).Click();
+            if (driver.FindElements(By.CssSelector("i.fa-gears")).Count > 0)
+            {
+                driver.FindElement(By.CssSelector("i.fa-gears")).Click(); 
+            }
+            if (driver.FindElements(By.XPath("//p[contains(text(),'blocked')]")).Count > 0) 
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
