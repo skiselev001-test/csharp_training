@@ -14,7 +14,7 @@ namespace mantis_tests
 
         public void TestProjectDeletion()
         {
-            AccauntData account = new AccauntData()
+            AccountData account = new AccountData()
             {
                 Name = "Administrator",
                 Password = "root",
@@ -26,7 +26,8 @@ namespace mantis_tests
                 Name = "TestProject_1"
             };
 
-            app.Project.Delete(project, account);
+            app.Project.CreateProjectIfItNotExist(project, account);
+            app.Project.Delete(project);
 
             Assert.IsFalse(app.Project.CheckAnExistingProject(project));
 

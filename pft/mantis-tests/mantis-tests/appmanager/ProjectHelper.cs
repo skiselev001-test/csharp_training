@@ -18,7 +18,26 @@ namespace mantis_tests
             driver.FindElement(By.XPath("//a[text()='Projects']")).Click();
         }
 
-        public void Create(ProjectData project, AccauntData account)
+        public void Create(ProjectData project)
+        {
+         /* manager.Registration.OpenMainPage();
+            manager.Registration.Login(account);
+            OpenProjectTab();
+            if (CheckAnExistingProject(project))
+            {
+                SelectProjectToDelete(project);
+                SubmitDeletionProject();
+            }
+         */
+            if (! CheckAnExistingProject(project))
+            {
+                OpenNewProjectForm();
+                FillCreateProjectForm(project);
+                SubmitCreationNewProject();
+            }
+        }
+
+        public void DeleteProjectIfItExist(ProjectData project, AccountData account)
         {
             manager.Registration.OpenMainPage();
             manager.Registration.Login(account);
@@ -28,15 +47,29 @@ namespace mantis_tests
                 SelectProjectToDelete(project);
                 SubmitDeletionProject();
             }
-            if (! CheckAnExistingProject(project))
+        }
+
+        public void Delete(ProjectData project)
+        {
+         /* manager.Registration.OpenMainPage();
+            manager.Registration.Login(account);
+            OpenProjectTab();
+            if (!CheckAnExistingProject(project))
             {
                 OpenNewProjectForm();
                 FillCreateProjectForm(project);
                 SubmitCreationNewProject();
             }
+         */
+            if (CheckAnExistingProject(project))
+            {
+                SelectProjectToDelete(project);
+                SubmitDeletionProject();
+            }
+
         }
 
-        public void Delete(ProjectData project, AccauntData account)
+        public void CreateProjectIfItNotExist(ProjectData project, AccountData account)
         {
             manager.Registration.OpenMainPage();
             manager.Registration.Login(account);
@@ -47,12 +80,6 @@ namespace mantis_tests
                 FillCreateProjectForm(project);
                 SubmitCreationNewProject();
             }
-            if (CheckAnExistingProject(project))
-            {
-                SelectProjectToDelete(project);
-                SubmitDeletionProject();
-            }
-
         }
 
         private void SubmitDeletionProject()
@@ -72,6 +99,7 @@ namespace mantis_tests
                 {
                     driver.FindElement(By
                 .XPath("//div[@class='col-md-12 col-xs-12']/div[@class='widget-box widget-color-blue2']//table[@class='table table-striped table-bordered table-condensed table-hover']/tbody/tr["+index.ToString()+"]/td[1]/a")).Click();
+                    return;
                 }
                 index++;
             }

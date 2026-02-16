@@ -14,7 +14,7 @@ namespace mantis_tests
 
         public void TestProjectRegistration()
         {
-            AccauntData account = new AccauntData()
+            AccountData account = new AccountData()
             {
                 Name = "Administrator",
                 Password = "root",
@@ -26,7 +26,8 @@ namespace mantis_tests
                 Name = "TestProject_1"
             };
 
-            app.Project.Create(project, account);
+            app.Project.DeleteProjectIfItExist(project, account);
+            app.Project.Create(project);
 
             Assert.IsTrue(app.Project.CheckAnExistingProject(project));
             
