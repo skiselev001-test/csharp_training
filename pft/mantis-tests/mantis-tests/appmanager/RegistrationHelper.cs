@@ -86,10 +86,10 @@ namespace mantis_tests
         }
         public void OpenMainPage()
         {
-            manager.Driver.Url = "http://localhost/mantisbt-2.28.0/login_page.php";
+            driver.Url = "http://localhost/mantisbt-2.28.0/login_page.php";
         }
 
-        internal bool Login(AccountData account)
+        public bool Login(AccountData account)
         {
             driver.FindElement(By.Name("username")).SendKeys(account.Name);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
@@ -104,6 +104,13 @@ namespace mantis_tests
                 return false;
             }
             return true;
+        }
+        public void Logout()
+        {
+            driver.FindElement(By.CssSelector("span.user-info")).Click();
+            driver.FindElement(By.XPath("//a[contains(text(),'Logout')]")).Click();
+
+
         }
     }
 }

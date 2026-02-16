@@ -21,7 +21,7 @@ namespace mantis_tests
         }
 
         [Test]
-        public void TestAccountRegistration()
+        public void TestAccountRegistration_task21()
         {
             List<AccountData> accounts = new List<AccountData>();
 
@@ -33,12 +33,37 @@ namespace mantis_tests
                 Email = "testuser@localhost.localdomain"
             };
 
-            //   app.Admin.DeleteAccount(account);
+            // app.Admin.DeleteAccount(account);
             // app.Registration.CheckExistAccount(account);
             app.Registration.GenerateAccount(account);
             app.James.Delete(account);
             app.James.Add(account);
 
+            app.Registration.Register(account);
+        }
+
+        [Test]
+        public void TestAccountRegistration()
+        {
+
+            AccountData account = new AccountData()
+            {
+                Name = "testuser05",
+                Password = "password",
+                Email = "testuser05@localhost.localdomain"
+            };
+
+            List<AccountData> accounts = app.Admin.GetAllAccounts();
+            AccountData existingAccount = accounts.Find(x => x.Name == account.Name);
+            if (existingAccount != null)
+            {
+                app.Admin.DeleteAccount(existingAccount);
+            }
+
+            app.James.Delete(account);
+            app.James.Add(account);
+
+            app.Registration.Logout();
             app.Registration.Register(account);
         }
 

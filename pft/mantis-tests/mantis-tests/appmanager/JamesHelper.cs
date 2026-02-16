@@ -12,7 +12,7 @@ namespace mantis_tests
 
         public JamesHelper(ApplicationManager manager) : base(manager) { }
 
-        public void Add(AccauntData account )
+        public void Add(AccountData account )
         {
             if (Verify(account))
             {
@@ -23,7 +23,7 @@ namespace mantis_tests
             System.Console.Out.WriteLine(telnet.Read());
         }
 
-        public void Delete(AccauntData account )
+        public void Delete(AccountData account )
         {
             if (! Verify(account))
             {
@@ -34,7 +34,7 @@ namespace mantis_tests
             System.Console.Out.WriteLine(telnet.Read());
         }
 
-        public bool Verify(AccauntData account)
+        public bool Verify(AccountData account)
         {
             TelnetConnection telnet = LoginToJames();
             telnet.WriteLine("deluser " + account.Name);

@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
+using OpenQA.Selenium.Internal;
 
 
 namespace mantis_tests
@@ -22,12 +23,13 @@ namespace mantis_tests
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/mantisbt-2.28.0";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             James = new JamesHelper(this);
             Mail = new MailHelper(this);
             Project = new ProjectHelper(this);
+            Admin = new AdminHelper(this, baseURL);
         }
 
         public static ApplicationManager GetInstance()
@@ -35,7 +37,7 @@ namespace mantis_tests
             if (! app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.driver.Url = "http://localhost/mantisbt-2.28.0/login_page.php";
+                newInstance.driver.Url = newInstance.baseURL + "/login_page.php";
                 app.Value = newInstance;
                
             }
@@ -53,5 +55,6 @@ namespace mantis_tests
         public JamesHelper James { get; set; }
         public MailHelper Mail { get; set; }
         public ProjectHelper Project { get; set; }
+        public AdminHelper Admin { get; set; }
     }
 }

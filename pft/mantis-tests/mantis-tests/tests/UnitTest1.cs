@@ -12,7 +12,7 @@ namespace mantis_tests
         [Test]
         public void TestMethod1()
         {
-            AccauntData accaunt = new AccauntData()
+            AccountData accaunt = new AccountData()
             {
                 Name = "xxx",
                 Password = "yyy"
