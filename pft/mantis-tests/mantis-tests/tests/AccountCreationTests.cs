@@ -34,7 +34,8 @@ namespace mantis_tests
             };
 
             //   app.Admin.DeleteAccount(account);
-            app.Registration.CheckExistAccount(account);
+            // app.Registration.CheckExistAccount(account);
+            app.Registration.GenerateAccount(account);
             app.James.Delete(account);
             app.James.Add(account);
 

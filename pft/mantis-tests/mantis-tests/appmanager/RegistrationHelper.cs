@@ -28,6 +28,13 @@ namespace mantis_tests
 
         }
 
+        public void GenerateAccount(AccountData account)
+        {
+                Random rnd = new Random();
+                int randomNumber = rnd.Next(1, 1001);
+                account.Name = account.Name + randomNumber.ToString();
+                account.Email = account.Name + "@localhost.localdomain";
+        }
         public void CheckExistAccount(AccountData account)
         {
             OpenMainPage();
