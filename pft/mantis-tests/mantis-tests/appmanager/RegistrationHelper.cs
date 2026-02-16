@@ -23,9 +23,14 @@ namespace mantis_tests
             String url = GetConfirmationUrl(account);
             FillPasswordForm(url, account);
             SubmitPasswordForm();
+           
+
+        }
+
+        public void CheckSuccessfullLogin(AccountData account)
+        {
             OpenMainPage();
             Assert.IsTrue(Login(account));
-
         }
 
         public void GenerateAccount(AccountData account)
