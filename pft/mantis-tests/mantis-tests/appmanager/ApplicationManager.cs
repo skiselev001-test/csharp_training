@@ -30,6 +30,7 @@ namespace mantis_tests
             Mail = new MailHelper(this);
             Project = new ProjectHelper(this);
             Admin = new AdminHelper(this, baseURL);
+            API = new APIHelper(this);
         }
 
         public static ApplicationManager GetInstance()
@@ -56,5 +57,6 @@ namespace mantis_tests
         public MailHelper Mail { get; set; }
         public ProjectHelper Project { get; set; }
         public AdminHelper Admin { get; set; }
+        public APIHelper API { get; set; }
     }
 }
