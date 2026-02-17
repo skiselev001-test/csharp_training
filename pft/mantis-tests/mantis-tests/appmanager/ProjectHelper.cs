@@ -1,10 +1,11 @@
-﻿using System;
+﻿using mantis_tests.Mantis;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace mantis_tests
 {
@@ -42,7 +43,7 @@ namespace mantis_tests
             manager.Registration.OpenMainPage();
             manager.Registration.Login(account);
             OpenProjectTab();
-            if (CheckAnExistingProject(project))
+            if (CheckAnExistingProject_API(project, account))
             {
                 SelectProjectToDelete(project);
                 SubmitDeletionProject();
@@ -62,6 +63,26 @@ namespace mantis_tests
             }
          */
             if (CheckAnExistingProject(project))
+            {
+                SelectProjectToDelete(project);
+                SubmitDeletionProject();
+            }
+
+        }
+
+        public void Delete_Hybrid(ProjectData project, AccountData account)
+        {
+               manager.Registration.OpenMainPage();
+               manager.Registration.Login(account);
+               OpenProjectTab();
+           /*    if (!CheckAnExistingProject(project))
+               {
+                   OpenNewProjectForm();
+                   FillCreateProjectForm(project);
+                   SubmitCreationNewProject();
+               }
+            */
+            if (CheckAnExistingProject_API(project, account))
             {
                 SelectProjectToDelete(project);
                 SubmitDeletionProject();
@@ -139,6 +160,38 @@ namespace mantis_tests
             return false;
         }
 
-       
+        public bool CheckAnExistingProject_API(ProjectData project, AccountData account)
+        {
+            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+
+            Mantis.ProjectData[] projects; 
+
+            projects = client.mc_projects_get_user_accessible(account.Name, account.Password);
+
+            if (projects.Length > 0)
+            {
+                for (int i = 0; i < projects.Length; i++)
+                {
+                    if (projects[i].name == project.Name)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void CreateProjectIfItNotExist_API(ProjectData project, AccountData account)
+        {
+            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+            Mantis.ProjectData projectAPI = new Mantis.ProjectData();
+
+            if (!CheckAnExistingProject_API(project, account))
+            {
+                projectAPI.name = project.Name;
+                client.mc_project_add(account.Name, account.Password, projectAPI);
+            }
+        }
+
     }
 }

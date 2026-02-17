@@ -26,15 +26,15 @@ namespace mantis_tests
                 Name = "TestProject_1"
             };
 
-            app.Project.CreateProjectIfItNotExist(project, account);
-            app.Project.Delete(project);
+            app.Project.CreateProjectIfItNotExist_API(project, account);
+            app.Project.Delete_Hybrid(project, account);
 
-            Assert.IsFalse(app.Project.CheckAnExistingProject(project));
+            Assert.IsFalse(app.Project.CheckAnExistingProject_API(project, account));
 
 
         }
 
-
+       
         /*
         [OneTimeTearDown]
         public void RestoreConfig()
